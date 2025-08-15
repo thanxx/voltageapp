@@ -239,6 +239,27 @@
             font-size: 1.2rem;
         }
 
+        .buy-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .buy-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .buy-list li::before {
+            content: '🛒';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+
+
         .adapter-comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -260,6 +281,12 @@
 
         .enhanced-adapter {
             background: linear-gradient(135deg, #1b5e20, #2e7d32);
+            border: 2px solid #4caf50;
+            color: #e8f5e8;
+        }
+
+        .notsupported-adapter {
+            background: linear-gradient(135deg, #890606, #540237);
             border: 2px solid #4caf50;
             color: #e8f5e8;
         }
@@ -372,12 +399,13 @@
                     </div>
 
                     <div class="feature-card">
+                        <div class="premium-badge">Premium</div>
                         <h3>🎛️ Engine Control</h3>
                         <p>Start or stop your car's engine remotely through the app:</p>
                         <ul class="feature-list">
                             <li>Prevent automatic cold-weather engine start</li>
                             <li>Prefer electric-only operation</li>
-                            <li>HOLD mode emulation. You can use it together with car SPORT mode to increase total power<span class="highlight">(Premium)</span></li>
+                            <li>HOLD mode emulation. You can use it together with car SPORT mode to increase total power</li>
                         </ul>
                     </div>
 
@@ -443,7 +471,6 @@
                         <ul class="feature-list">
                             <li>Automatic data logging</li>
                             <li>Interactive charts and trends</li>
-                            <li>Track performance over time</li>
                             <li>Time-series database storage</li>
                         </ul>
                     </div>
@@ -456,24 +483,44 @@
                 <div class="adapter-comparison">
                     <div class="adapter-card basic-adapter">
                         <h3>📱 Basic Functionality</h3>
-                        <h4>ELM327-based OBD2 Adapter</h4>
+                        <h4>ELM327-based Bluetooth OBD2 Adapters</h4>
                         <ul class="feature-list">
                             <li>Retrieve vehicle data when car is running</li>
                             <li>Basic diagnostics and monitoring</li>
-                            <li>Standard OBD2 compatibility</li>
+                        </ul>
+                        <h4>Recommended basic adapter</h4>
+                        <ul class="buy-list">
+                            <li>vGate iCar Pro <a href="https://www.google.com/search?q=vGate+iCar+Pro" target="_blank">BUY</a></li>
                         </ul>
                     </div>
 
                     <div class="adapter-card enhanced-adapter">
                         <h3>🚀 Enhanced Features</h3>
-                        <h4>SW-CAN Compatible Adapter</h4>
+                        <h4>SW-CAN Compatible Adapters</h4>
                         <ul class="feature-list">
-                            <li>Automatic vehicle wake-up</li>
+                            <li>Automatic vehicle wake-up (for monitoring or control)</li>
                             <li>Remote door lock/unlock</li>
                             <li>Remote preconditioning start</li>
-                            <li>Monitor while vehicle is off</li>
+                            <li>Access to Instrument panel cluster</li>
+                            <li>Access to Radio module</li>
+                            <li>Access to HVAC system module</li>
+                            <li>Access to Frontview Camera module</li>
                         </ul>
-                        <p><small><em>Required for remote control features</em></small></p>
+                        <h4>Recommended SW-CAN adapters</h4>
+                        <ul class="buy-list">
+                            <li>vGate vLinker MC / MC+ <a href="https://www.google.com/search?q=vGate+vLinker+MC" target="_blank">BUY</a></li>
+                            <li>OBDLink MX / MX+ <a href="https://www.google.com/search?q=OBDLink+MX+" target="_blank">BUY</a></li>
+                        </ul>
+                        <p><small><em>Required for full app compatibility</em></small></p>
+                    </div>
+
+                    <div class="adapter-card notsupported-adapter">
+                        <h3>❌ Not Supported</h3>
+                        <h4>BLE & WiFi OBD2 adapters</h4>
+                        <ul>
+                            <li>Currently the app doesn't work with BLE and WiFi OBD2 adapters</li>
+                        </ul>
+
                     </div>
                 </div>
             </section>
