@@ -258,7 +258,7 @@
         }
 
         .buy-list li::before {
-            content: '🛒';
+            content: '→';
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -375,6 +375,73 @@
             .screenshots-scroll img {
                 height: 380px;
             }
+        }
+
+        .compat-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(100, 149, 237, 0.2);
+        }
+
+        .compat-table th,
+        .compat-table td {
+            padding: 14px 18px;
+            text-align: center;
+            border-bottom: 1px solid rgba(100, 149, 237, 0.1);
+        }
+
+        .compat-table thead th {
+            background: rgba(66, 165, 245, 0.15);
+            color: #90caf9;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .compat-table thead th:first-child {
+            text-align: left;
+        }
+
+        .compat-table tbody td:first-child {
+            text-align: left;
+            color: #bbdefb;
+            font-weight: 500;
+        }
+
+        .compat-table tbody tr {
+            background: rgba(42, 45, 71, 0.5);
+        }
+
+        .compat-table tbody tr:hover {
+            background: rgba(42, 45, 71, 0.8);
+        }
+
+        .compat-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compat-yes {
+            color: #4caf50;
+            font-weight: 600;
+        }
+
+        .compat-no {
+            color: #ef5350;
+            font-weight: 600;
+        }
+
+        .compat-soon {
+            color: #ffca28;
+            font-weight: 600;
+        }
+
+        .compat-note {
+            color: rgba(228, 230, 234, 0.5);
+            font-size: 0.85rem;
+            margin-top: 12px;
         }
 
         .highlight {
@@ -508,9 +575,39 @@
                 </div>
             </section>
 
+            <section class="section" id="compatibility">
+                <h2>Vehicle Compatibility</h2>
+                <table class="compat-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Before 2018</th>
+                            <th>2019 &ndash; 2023</th>
+                            <th>2024+</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data reading, monitoring, special functions</td>
+                            <td class="compat-yes">Yes</td>
+                            <td class="compat-yes">Yes</td>
+                            <td class="compat-soon">Coming soon</td>
+                        </tr>
+                        <tr>
+                            <td>Remote start / doors / window control</td>
+                            <td class="compat-yes">Yes</td>
+                            <td class="compat-no">No *</td>
+                            <td>&mdash;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="compat-note">* Serial Data Gateway Module installed on cars since 2019 firewalls remote control and other commands from the OBD2 port.</p>
+            </section>
+
             <section class="section" id="adapters">
                 <h2>Supported Adapters</h2>
-                <div class="adapter-card enhanced-adapter">
+                <div class="adapter-comparison">
+                    <div class="adapter-card enhanced-adapter">
                         <h3>Enhanced Features</h3>
                         <h4>SW-CAN Compatible Adapters</h4>
                         <ul class="feature-list">
@@ -528,8 +625,7 @@
                         </ul>
                         <p><small><em>Required for full app compatibility</em></small></p>
                     </div>
-                
-                <div class="adapter-comparison">
+
                     <div class="adapter-card basic-adapter">
                         <h3>Basic Functionality</h3>
                         <h4>ELM327-based Bluetooth OBD2 Adapters</h4>
@@ -540,12 +636,8 @@
                         <ul class="buy-list">
                             <li>vGate iCar Pro BT3.0 <a href="https://www.google.com/search?q=vGate+iCar+Pro+BT3.0" target="_blank">BUY</a></li>
                             <li>ELM327 v1.5 <a href="https://www.google.com/search?q=ELM327+v1.5" target="_blank">BUY</a></li>
-
                         </ul>
                     </div>
-
-
-
                 </div>
             </section>
         </div>
