@@ -47,6 +47,7 @@
         .app-icon {
             width: 80px;
             height: 80px;
+            border-radius: 18px;
             animation: fadeInUp 1s ease-out;
             filter: drop-shadow(0 4px 20px rgba(100, 181, 246, 0.3));
         }
@@ -130,7 +131,7 @@
         }
 
         .section {
-            padding: 40px;
+            padding: 30px;
             border-bottom: 1px solid rgba(100, 149, 237, 0.15);
         }
 
@@ -325,7 +326,7 @@
             }
             
             .section {
-                padding: 25px;
+                padding: 15px;
             }
 
             .hero-buttons {
@@ -377,8 +378,14 @@
             }
         }
 
+        .compat-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .compat-table {
             width: 100%;
+            min-width: 500px;
             border-collapse: separate;
             border-spacing: 0;
             margin: 20px 0;
@@ -457,20 +464,7 @@
     <div class="container">
         <header>
             <div class="hero-content">
-                <svg class="app-icon" viewBox="0 0 203.41 131.32" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <clipPath id="clip1">
-                            <path d="M9.8,7.32L56.8,7.32L56.8,44.07L9.8,44.07ZM9.8,7.32"/>
-                        </clipPath>
-                    </defs>
-                    <g clipPath="url(#clip1)">
-                        <path d="M13.55,7.32L9.8,7.32L48.64,43.19L56.15,43.19L13.55,7.32" fill="#64b5f6"/>
-                    </g>
-                    <path d="M85.52,77.16L48.64,43.19L32.35,43.19L87.85,89.72L109.43,89.69L88.4,70.57L85.52,77.16" fill="#64b5f6"/>
-                    <path d="M84.85,59.65L116.93,89.69L128.55,89.69L181.76,43.22L166.43,43.19L122.3,81.19L76.8,43.19L56.15,43.19L81.89,65.73L84.85,59.65" fill="#64b5f6"/>
-                    <path d="M109.43,89.69L153.05,128.07L156.68,128.07L116.93,89.69L109.43,89.69" fill="#64b5f6"/>
-                    <path d="M189.26,43.19L189.26,89.69L189.26,43.19" fill="#64b5f6"/>
-                </svg>
+                <img class="app-icon" src="app-icon.png" alt="Voltage App Icon">
                 <h1 class="hero-title">Voltage App</h1>
                 <p class="hero-subtitle">Advanced Monitoring & Control for Your EV</p>
                 <div class="hero-buttons">
@@ -577,6 +571,7 @@
 
             <section class="section" id="compatibility">
                 <h2>Vehicle Compatibility</h2>
+                <div class="compat-table-wrapper">
                 <table class="compat-table">
                     <thead>
                         <tr>
@@ -601,6 +596,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <p class="compat-note">* Serial Data Gateway Module installed on cars since 2019 firewalls remote control and other commands from the OBD2 port.</p>
             </section>
 
