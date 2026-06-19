@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voltage - Advanced EV Monitoring & Control</title>
-    <meta name="description" content="Monitor and control your Chevrolet Volt, Opel Ampera, Buick Velite, Chevrolet Bolt, or Spark EV with comprehensive diagnostics and remote features.">
+    <meta name="description" content="Monitor and control your Chevrolet Volt, Opel Ampera, Chevrolet Bolt, or Spark EV with comprehensive diagnostics and remote features.">
     
     <style>
         * {
@@ -107,6 +107,13 @@
         .explore-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(30, 136, 229, 0.6);
+        }
+
+        .ios-soon-btn {
+            background: linear-gradient(45deg, #555, #444);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            opacity: 0.85;
+            cursor: default;
         }
 
         .download-icon {
@@ -332,6 +339,44 @@
             }
         }
 
+        .screenshots-scroll {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .screenshots-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .screenshots-scroll::-webkit-scrollbar-track {
+            background: rgba(100, 149, 237, 0.1);
+            border-radius: 4px;
+        }
+
+        .screenshots-scroll::-webkit-scrollbar-thumb {
+            background: rgba(100, 149, 237, 0.3);
+            border-radius: 4px;
+        }
+
+        .screenshots-scroll img {
+            height: 500px;
+            width: auto;
+            border-radius: 12px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .screenshots-scroll img {
+                height: 380px;
+            }
+        }
+
         .highlight {
             background: linear-gradient(120deg, transparent 0%, rgba(100, 181, 246, 0.2) 50%, transparent 100%);
             padding: 2px 6px;
@@ -366,6 +411,10 @@
                         <span class="download-icon">📱</span>
                         Download on Google Play
                     </a>
+                    <span class="cta-button ios-soon-btn">
+                        <span class="download-icon"></span>
+                        iOS &mdash; Coming Soon
+                    </span>
                 </div>
             </div>
         </header>
@@ -376,14 +425,91 @@
                 <div class="cars-grid">
                     <div class="car-card">Chevrolet Volt</div>
                     <div class="car-card">Opel/Vauxhall/Holden Ampera</div>
-                    <div class="car-card">Buick Velite</div>
-                    <div class="car-card">Chevrolet Bolt/Opel Ampera-E</div>
+                    <div class="car-card">Chevrolet Bolt/Opel Ampera-E (2017–2023)</div>
                     <div class="car-card">Chevrolet Spark EV</div>
                 </div>
             </section>
 
+            <section class="section" id="screenshots">
+                <h2>App Screenshots</h2>
+                <div class="screenshots-scroll">
+                    <img src="screenshots/1_play.png" alt="Check Battery Health">
+                    <img src="screenshots/2_play.png" alt="Compare to Peers">
+                    <img src="screenshots/7_play.png" alt="Track Live Data">
+                    <img src="screenshots/5_play.png" alt="Advanced Charging Control">
+                    <img src="screenshots/4_play.png" alt="Remote Control">
+                    <img src="screenshots/3_play.png" alt="HV Unlock">
+                    <img src="screenshots/8_play.png" alt="Test Weak Battery Cells">
+                    <img src="screenshots/6_play.png" alt="Diagnostic Suite and History">
+                </div>
+            </section>
+
+            <section class="section" id="features">
+                <h2>Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Vehicle Control</h3>
+                        <ul class="feature-list">
+                            <li>Remote start and climate pre-conditioning (vehicles before 2019)</li>
+                            <li>Battery heater for cold-weather range</li>
+                            <li>Charge management and scheduling</li>
+                            <li>Remote door and window operation</li>
+                            <li>Engine control (ON / OFF / Release)</li>
+                            <li>Module reset and DTC clearing</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Professional Diagnostics</h3>
+                        <ul class="feature-list">
+                            <li>Deep DTC scan across all modules</li>
+                            <li>100+ live parameters with dual-column mode</li>
+                            <li>Real-time battery pack analysis: cell voltages, temps</li>
+                            <li>Weak Cell active test with guided verdict</li>
+                            <li>Battery coolant pump and heater control</li>
+                            <li>HW Info with module programming dates</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Live Monitoring</h3>
+                        <p>Nine dedicated screens, every value charted in real time:</p>
+                        <ul class="feature-list">
+                            <li>Efficiency &mdash; SoC, EV range, kWh, fuel efficiency</li>
+                            <li>Powertrain &mdash; HV power, motor temps, transmission</li>
+                            <li>HV Battery &mdash; pack voltage, cell delta, temps, coolant</li>
+                            <li>Charger &mdash; AC/DC voltage, current, power, duty cycles</li>
+                            <li>Climate &mdash; HVAC, cabin heat, AC, blower, remote start</li>
+                            <li>12V &mdash; voltage, current, power, per-module supply</li>
+                            <li>TPMS &mdash; live tire pressure for all four wheels</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>HV Unlock</h3>
+                        <p>"Unbrick" your car and stay on the road — avoid a tow truck by resetting the high voltage system right from your phone. Clears Service High Voltage Charging System faults and re-enables driving and charging.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Health Insights</h3>
+                        <p>Critical vehicle health analysis and maintenance recommendations &mdash; ideal for DIY enthusiasts, used car buyers checking battery health, and owners tracking long-term performance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>History & Export</h3>
+                        <ul class="feature-list">
+                            <li>Full history view with vehicle selection</li>
+                            <li>Export, import, and edit vehicle history</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Polished Experience</h3>
+                        <ul class="feature-list">
+                            <li>Dark / Light / System theme</li>
+                            <li>Multi-language support</li>
+                            <li>Bottom status bar for at-a-glance info</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
             <section class="section" id="adapters">
-                <h2>🔌 Supported Adapters</h2>
+                <h2>Supported Adapters</h2>
                 <div class="adapter-card enhanced-adapter">
                         <h3>Enhanced Features</h3>
                         <h4>SW-CAN Compatible Adapters</h4>
@@ -395,9 +521,10 @@
                             <li>Access to HVAC system module</li>
                             <li>Access to Frontview Camera module</li>
                         </ul>
-                        <h4>Recommended SW-CAN adapter</h4>
+                        <h4>Recommended SW-CAN adapters</h4>
                         <ul class="buy-list">
-                            <li>vGate vLinker MC / MC+ <a href="https://www.google.com/search?q=vGate+vLinker+MC" target="_blank">BUY</a></li>
+                            <li>vGate vLinker MS (iOS + Android) <a href="https://www.google.com/search?q=vGate+vLinker+MS" target="_blank">BUY</a></li>
+                            <li>vGate vLinker MC / MC+ (Android) <a href="https://www.google.com/search?q=vGate+vLinker+MC" target="_blank">BUY</a></li>
                         </ul>
                         <p><small><em>Required for full app compatibility</em></small></p>
                     </div>
@@ -419,20 +546,12 @@
 
 
 
-                    <div class="adapter-card notsupported-adapter">
-                        <h3>❌ Not Supported</h3>
-                        <h4>BLE & WiFi OBD2 adapters</h4>
-                        <ul>
-                            <li>Currently the app doesn't work with BLE and WiFi OBD2 adapters</li>
-                        </ul>
-
-                    </div>
                 </div>
             </section>
         </div>
 
         <footer class="footer">
-            <p>© 2025 Voltage App - Advanced Monitoring & Control</p>
+            <p>&copy; 2025 Voltage App &middot; <a href="privacy.html" style="color: rgba(228, 230, 234, 0.6); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#64b5f6'" onmouseout="this.style.color='rgba(228, 230, 234, 0.6)'">Privacy Policy</a></p>
         </footer>
     </div>
 </body>
