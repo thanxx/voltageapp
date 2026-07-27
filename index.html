@@ -124,6 +124,42 @@
             font-size: 1.2rem;
         }
 
+        .site-nav {
+            position: sticky;
+            top: 10px;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            background: rgba(22, 33, 62, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(100, 149, 237, 0.3);
+            padding: 10px;
+            margin: 0 0 20px 0;
+        }
+
+        .site-nav a {
+            color: rgba(228, 230, 234, 0.75);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 50px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .site-nav a:hover {
+            color: #fff;
+            background: rgba(100, 181, 246, 0.15);
+        }
+
+        .section {
+            scroll-margin-top: 80px;
+        }
+
         .content {
             background: rgba(30, 30, 46, 0.9);
             border-radius: 20px;
@@ -466,6 +502,25 @@
             margin-top: 12px;
         }
 
+        .compat-dash {
+            color: rgba(228, 230, 234, 0.25);
+        }
+
+        .pricing-table td:first-child {
+            font-weight: 400;
+            color: #e4e6ea;
+        }
+
+        .pricing-table thead th:not(:first-child) {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .pricing-table th:nth-child(3),
+        .pricing-table td:nth-child(3) {
+            background: rgba(255, 202, 40, 0.06);
+        }
+
         .highlight {
             background: linear-gradient(120deg, transparent 0%, rgba(100, 181, 246, 0.2) 50%, transparent 100%);
             padding: 2px 6px;
@@ -495,8 +550,15 @@
             </div>
         </header>
 
+        <nav class="site-nav">
+            <a href="#vehicles">Vehicles</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#features">Features</a>
+            <a href="#adapters">Adapters</a>
+        </nav>
+
         <div class="content">
-            <section class="section">
+            <section class="section" id="vehicles">
                 <h2>Supported Vehicles</h2>
                 <div class="cars-grid">
                     <div class="car-card">Chevrolet Volt</div>
@@ -612,6 +674,106 @@
                         </ul>
                     </div>
                 </div>
+
+                <h3>Free vs Premium</h3>
+                <div class="compat-table-wrapper">
+                <table class="compat-table pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Free</th>
+                            <th>Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full battery data scanning</td>
+                            <td class="compat-yes">&#10003;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Scan history</td>
+                            <td class="compat-yes">&#10003;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Live monitoring (limited set)</td>
+                            <td class="compat-yes">&#10003;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>DTC scanning and clearing</td>
+                            <td class="compat-yes">&#10003;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Compare to peers by odometer</td>
+                            <td class="compat-yes">&#10003;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Live monitoring (all parameters)</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>High voltage DTC clearing (P1FFF, P0AFA, SHVCS)</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Compare to peers by battery capacity</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Compare to peers by battery internal resistance (2011&ndash;2018)</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Doors lock/unlock, windows up/down, climate start (2011&ndash;2018)</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Charging control (2016&ndash;2023)</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Engine control (2011&ndash;2019)</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Main screen at-a-glance dashboard</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Health report</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Weak cells active test</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Special functions: battery capacity relearn, coolant pump/heater control, infotainment (radio) reset</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>ECU info: module part numbers, calibration versions</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
             </section>
 
             <section class="section" id="adapters">
@@ -642,7 +804,7 @@
                         <h3>Basic Functionality</h3>
                         <h4>ELM327-based Bluetooth OBD2 Adapters</h4>
                         <ul class="feature-list">
-                            <li>Access only to High Speed CAN</li>
+                            <li>Access only to High Speed CAN (Engine, Hybrid Powertrain and Battery Energy Control Modules)</li>
                         </ul>
                         <h4>Recommended basic adapter</h4>
                         <ul class="buy-list">
