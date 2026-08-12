@@ -5,678 +5,754 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voltage - Advanced EV Monitoring & Control</title>
     <meta name="description" content="Monitor and control your Chevrolet Volt, Opel Ampera, Chevrolet Bolt, or Spark EV with comprehensive diagnostics and remote features.">
-    
+
+    <link rel="icon" type="image/png" href="app-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #000;
+            --surface: #0c0c0c;
+            --surface-2: #131313;
+            --line: #1e1e1e;
+            --line-soft: #171717;
+            --text: #e7e7e7;
+            --muted: #878787;
+            --accent: #2d9bda;
+            --green: #3fbf7f;
+            --amber: #e3a93c;
+            --red: #e5484d;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #e4e6ea;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            min-height: 100vh;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1080px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
+        /* ---------- Hero ---------- */
+
         header {
-            background: rgba(22, 33, 62, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin: 20px 0;
-            padding: 50px 0;
+            padding: 100px 0 80px;
             text-align: center;
-            border: 1px solid rgba(100, 149, 237, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -140px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 420px;
+            background: radial-gradient(ellipse at center, rgba(45, 155, 218, 0.16) 0%, transparent 68%);
+            pointer-events: none;
         }
 
         .hero-content {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
         }
 
         .app-icon {
-            width: 80px;
-            height: 80px;
+            width: 76px;
+            height: 76px;
             border-radius: 18px;
-            animation: fadeInUp 1s ease-out;
-            filter: drop-shadow(0 4px 20px rgba(100, 181, 246, 0.3));
+            border: 1px solid var(--line);
         }
 
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #64b5f6;
-            margin: 0;
-            text-shadow: 0 4px 20px rgba(100, 181, 246, 0.4);
-            animation: fadeInUp 1s ease-out 0.1s both;
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.045em;
+            line-height: 1.05;
+            color: #fff;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
-            color: rgba(228, 230, 234, 0.85);
-            margin: 0;
-            font-weight: 300;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            font-size: 1.25rem;
+            color: var(--muted);
+            font-weight: 400;
+            max-width: 540px;
+            letter-spacing: -0.01em;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 12px;
             flex-wrap: wrap;
             justify-content: center;
-            animation: fadeInUp 1s ease-out 0.3s both;
+            margin-top: 8px;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 15px 30px;
+            gap: 10px;
+            padding: 14px 26px;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 40px;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            color: white;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
+            transition: all 0.2s ease;
         }
 
         .download-btn {
-            background: linear-gradient(45deg, #4caf50, #388e3c);
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+            background: #fff;
+            color: #000;
         }
 
         .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.6);
+            background: #d6d6d6;
         }
 
         .explore-btn {
-            background: linear-gradient(45deg, #42a5f5, #1e88e5);
-            box-shadow: 0 10px 30px rgba(30, 136, 229, 0.4);
+            background: transparent;
+            color: var(--text);
+            border: 1px solid #2e2e2e;
         }
 
         .explore-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(30, 136, 229, 0.6);
+            background: #101010;
+            border-color: #464646;
         }
 
-        .ios-soon-btn {
-            background: linear-gradient(45deg, #555, #444);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            opacity: 0.85;
-            cursor: default;
-        }
-
-        .download-icon {
-            font-size: 1.2rem;
-        }
+        /* ---------- Nav ---------- */
 
         .site-nav {
             position: sticky;
-            top: 10px;
-            z-index: 10;
+            top: 0;
+            z-index: 20;
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 4px;
             flex-wrap: wrap;
-            background: rgba(22, 33, 62, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            border: 1px solid rgba(100, 149, 237, 0.3);
-            padding: 10px;
-            margin: 0 0 20px 0;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(14px);
+            border-top: 1px solid var(--line-soft);
+            border-bottom: 1px solid var(--line-soft);
+            padding: 12px 16px;
         }
 
         .site-nav a {
-            color: rgba(228, 230, 234, 0.75);
+            color: var(--muted);
             text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            padding: 8px 18px;
-            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 30px;
             transition: all 0.2s ease;
             white-space: nowrap;
         }
 
         .site-nav a:hover {
-            color: #fff;
-            background: rgba(100, 181, 246, 0.15);
+            color: var(--text);
+            background: #141414;
         }
+
+        /* ---------- Sections ---------- */
 
         .section {
-            scroll-margin-top: 80px;
-        }
-
-        .content {
-            background: rgba(30, 30, 46, 0.9);
-            border-radius: 20px;
-            margin: 20px 0;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            border: 1px solid rgba(100, 149, 237, 0.15);
-        }
-
-        .section {
-            padding: 30px;
-            border-bottom: 1px solid rgba(100, 149, 237, 0.15);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--line-soft);
+            scroll-margin-top: 70px;
         }
 
         .section:last-child {
             border-bottom: none;
         }
 
-        .section h2 {
-            font-size: 2.2rem;
-            color: #90caf9;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
+        .eyebrow {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
         }
 
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(45deg, #42a5f5, #1e88e5);
-            border-radius: 2px;
+        .section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 14px;
+        }
+
+        .section-lede {
+            color: var(--muted);
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin-bottom: 40px;
         }
 
         .section h3 {
-            font-size: 1.4rem;
-            color: #bbdefb;
-            margin: 25px 0 15px 0;
+            font-size: 1.15rem;
             font-weight: 600;
+            letter-spacing: -0.015em;
+            color: #fff;
+            margin-bottom: 14px;
         }
+
+        /* ---------- Vehicle cards ---------- */
 
         .cars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
         }
 
         .car-card {
-            background: linear-gradient(135deg, #2a2d47, #383b5a);
+            background: var(--surface);
             padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            font-weight: 600;
-            color: #e4e6ea;
-            border: 2px solid rgba(100, 149, 237, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .coming-soon-card {
-            background: linear-gradient(135deg, #2d3a1e, #3a4a28);
-            border-color: rgba(255, 202, 40, 0.4);
-            color: #ffca28;
-            margin-top: 10px;
-        }
-
-        .coming-soon-card:hover {
-            border-color: #ffca28;
-            box-shadow: 0 10px 25px rgba(255, 202, 40, 0.2);
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 0.98rem;
+            color: var(--text);
+            border: 1px solid var(--line);
+            transition: border-color 0.2s ease, background 0.2s ease;
         }
 
         .car-card:hover {
-            transform: translateY(-5px);
-            border-color: #64b5f6;
-            box-shadow: 0 10px 25px rgba(100, 181, 246, 0.3);
-            background: linear-gradient(135deg, #354162, #445074);
+            border-color: #333;
+            background: var(--surface-2);
         }
+
+        .coming-soon-card {
+            margin-top: 12px;
+            color: var(--amber);
+            border-color: rgba(227, 169, 60, 0.28);
+            background: rgba(227, 169, 60, 0.05);
+            text-align: center;
+        }
+
+        .coming-soon-card:hover {
+            border-color: rgba(227, 169, 60, 0.5);
+            background: rgba(227, 169, 60, 0.08);
+        }
+
+        /* ---------- Feature cards ---------- */
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
+            gap: 16px;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #2a2d47, #1e1f2e);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 4px solid #42a5f5;
-            transition: all 0.3s ease;
-            position: relative;
-            border: 1px solid rgba(100, 149, 237, 0.1);
+            background: var(--surface);
+            padding: 28px;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            transition: border-color 0.2s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(100, 149, 237, 0.3);
+            border-color: #333;
         }
 
-        .premium-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: linear-gradient(45deg, #ffca28, #ffc107);
-            color: #1a1a1a;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+        .feature-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
         .feature-list {
             list-style: none;
-            margin: 15px 0;
+            margin-top: 4px;
         }
 
         .feature-list li {
-            padding: 8px 0;
-            padding-left: 25px;
+            padding: 7px 0 7px 26px;
             position: relative;
+            color: var(--muted);
+            font-size: 0.95rem;
         }
 
         .feature-list li::before {
-            content: '✓';
+            content: '';
             position: absolute;
-            left: 0;
-            color: #4caf50;
-            font-weight: bold;
-            font-size: 1.2rem;
+            left: 2px;
+            top: 15px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
         }
 
-        .buy-list {
-            list-style: none;
-            margin: 15px 0;
+        .feature-card p + .feature-list {
+            margin-top: 12px;
         }
 
-        .buy-list li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .buy-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-
-
-        .adapter-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .adapter-card {
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .basic-adapter {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            border: 2px solid #42a5f5;
-            color: #e3f2fd;
-        }
-
-        .enhanced-adapter {
-            background: linear-gradient(135deg, #1b5e20, #2e7d32);
-            border: 2px solid #4caf50;
-            color: #e8f5e8;
-        }
-
-        .notsupported-adapter {
-            background: linear-gradient(135deg, #890606, #540237);
-            border: 2px solid #4caf50;
-            color: #e8f5e8;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px;
-            color: rgba(228, 230, 234, 0.6);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .adapter-comparison {
-                grid-template-columns: 1fr;
-            }
-            
-            .section {
-                padding: 15px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .app-icon {
-                width: 60px;
-                height: 60px;
-            }
-        }
+        /* ---------- Screenshots ---------- */
 
         .screenshots-scroll {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             overflow-x: auto;
-            padding: 20px 0;
+            padding-bottom: 18px;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
 
         .screenshots-scroll::-webkit-scrollbar {
-            height: 8px;
+            height: 4px;
         }
 
         .screenshots-scroll::-webkit-scrollbar-track {
-            background: rgba(100, 149, 237, 0.1);
+            background: var(--line-soft);
             border-radius: 4px;
         }
 
         .screenshots-scroll::-webkit-scrollbar-thumb {
-            background: rgba(100, 149, 237, 0.3);
+            background: #333;
             border-radius: 4px;
         }
 
         .screenshots-scroll img {
-            height: 500px;
-            width: auto;
-            border-radius: 12px;
+            height: 480px;
+            width: 270px;
+            aspect-ratio: 9 / 16;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 1px solid var(--line);
             scroll-snap-align: start;
             flex-shrink: 0;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
-        @media (max-width: 768px) {
-            .screenshots-scroll img {
-                height: 380px;
-            }
-        }
+        /* ---------- Tables ---------- */
 
         .compat-table-wrapper {
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--surface);
         }
 
         .compat-table {
             width: 100%;
-            min-width: 500px;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin: 20px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(100, 149, 237, 0.2);
+            min-width: 540px;
+            border-collapse: collapse;
         }
 
         .compat-table th,
         .compat-table td {
-            padding: 14px 18px;
+            padding: 15px 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(100, 149, 237, 0.1);
+            border-bottom: 1px solid var(--line-soft);
+            font-size: 0.94rem;
         }
 
         .compat-table thead th {
-            background: rgba(66, 165, 245, 0.15);
-            color: #90caf9;
+            color: #fff;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.88rem;
+            letter-spacing: 0.02em;
+            background: var(--surface-2);
         }
 
-        .compat-table thead th:first-child {
-            text-align: left;
-        }
-
+        .compat-table thead th:first-child,
         .compat-table tbody td:first-child {
             text-align: left;
-            color: #bbdefb;
-            font-weight: 500;
-        }
-
-        .compat-table tbody tr {
-            background: rgba(42, 45, 71, 0.5);
-        }
-
-        .compat-table tbody tr:hover {
-            background: rgba(42, 45, 71, 0.8);
+            color: var(--text);
+            font-weight: 400;
         }
 
         .compat-table tbody tr:last-child td {
             border-bottom: none;
         }
 
+        .compat-table tbody tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
         .compat-yes {
-            color: #4caf50;
+            color: var(--green);
             font-weight: 600;
         }
 
         .compat-no {
-            color: #ef5350;
+            color: var(--red);
             font-weight: 600;
         }
 
         .compat-soon {
-            color: #ffca28;
+            color: var(--amber);
             font-weight: 600;
         }
 
-        .compat-note {
-            color: rgba(228, 230, 234, 0.5);
-            font-size: 0.85rem;
-            margin-top: 12px;
-        }
-
         .compat-dash {
-            color: rgba(228, 230, 234, 0.25);
+            color: #3a3a3a;
         }
 
-        .pricing-table td:first-child {
-            font-weight: 400;
-            color: #e4e6ea;
+        .compat-note {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 14px;
         }
 
-        .pricing-table thead th:not(:first-child) {
+        .pricing-table th:last-child,
+        .pricing-table td:last-child {
+            background: rgba(45, 155, 218, 0.05);
+        }
+
+        .pricing-table thead th:last-child {
+            color: var(--accent);
+        }
+
+        .pricing-block {
+            margin-top: 56px;
+            scroll-margin-top: 70px;
+        }
+
+        /* ---------- Adapters ---------- */
+
+        .adapter-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .adapter-card {
+            padding: 28px;
+            border-radius: 18px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+        }
+
+        .adapter-card h4 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin: 24px 0 4px;
+        }
+
+        .adapter-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+        }
+
+        .enhanced-adapter {
+            border-color: rgba(63, 191, 127, 0.3);
+        }
+
+        .enhanced-adapter .adapter-badge {
+            background: rgba(63, 191, 127, 0.12);
+            color: var(--green);
+        }
+
+        .enhanced-adapter .feature-list li::before {
+            background: var(--green);
+        }
+
+        .basic-adapter .adapter-badge {
+            background: #1c1c1c;
+            color: var(--muted);
+        }
+
+        .basic-adapter .feature-list li::before {
+            background: #4a4a4a;
+        }
+
+        .buy-list {
+            list-style: none;
+            margin-top: 4px;
+        }
+
+        .buy-list li {
+            padding: 8px 0;
+            color: var(--text);
+            font-size: 0.94rem;
+            border-bottom: 1px solid var(--line-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .buy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .buy-list .platform {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .buy-list a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            border: 1px solid rgba(45, 155, 218, 0.35);
+            padding: 4px 12px;
+            border-radius: 30px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .buy-list a:hover {
+            background: rgba(45, 155, 218, 0.12);
+            border-color: var(--accent);
+        }
+
+        .adapter-note {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+
+        /* ---------- Footer ---------- */
+
+        .footer {
             text-align: center;
-            font-size: 1.1rem;
+            padding: 48px 0 60px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--line-soft);
         }
 
-        .pricing-table th:nth-child(3),
-        .pricing-table td:nth-child(3) {
-            background: rgba(255, 202, 40, 0.06);
+        .footer a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
 
-        .highlight {
-            background: linear-gradient(120deg, transparent 0%, rgba(100, 181, 246, 0.2) 50%, transparent 100%);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #81d4fa;
-            font-weight: 500;
+        .footer a:hover {
+            color: var(--text);
+        }
+
+        /* ---------- Responsive ---------- */
+
+        @media (max-width: 860px) {
+            .adapter-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 64px 0 56px;
+            }
+
+            .hero-title {
+                font-size: 2.7rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.08rem;
+            }
+
+            .section {
+                padding: 56px 0;
+            }
+
+            .section h2 {
+                font-size: 1.9rem;
+            }
+
+            .screenshots-scroll img {
+                height: 400px;
+            }
+
+            .feature-card,
+            .adapter-card {
+                padding: 22px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="container">
             <div class="hero-content">
                 <img class="app-icon" src="app-icon.png" alt="Voltage App Icon">
-                <h1 class="hero-title">Voltage App</h1>
-                <p class="hero-subtitle">Advanced Monitoring & Control for Your EV</p>
+                <h1 class="hero-title">Voltage</h1>
+                <p class="hero-subtitle">Professional-grade diagnostics, live monitoring and remote control for your GM electric vehicle.</p>
                 <div class="hero-buttons">
                     <a href="https://play.google.com/store/apps/details?id=io.tripovan.voltage" class="cta-button download-btn" target="_blank">
-                        <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M1.571 0.321C1.202 0.53 0.977 0.936 0.977 1.462v19.076c0 0.526 0.225 0.932 0.594 1.141l0.063 0.033 10.684-10.684v-0.056L1.634 0.288 1.571 0.321z"/><path d="M15.879 14.573l-3.561-3.561v-0.056l3.561-3.561 0.08 0.046 4.219 2.397c1.205 0.684 1.205 1.804 0 2.488l-4.219 2.397-0.08-0.15z"/><path d="M15.959 14.723L12.318 11.028 1.571 21.838c0.397 0.42 1.054 0.472 1.794 0.052l12.594-7.167z"/><path d="M15.959 7.341L3.365 0.174C2.625-0.246 1.968-0.194 1.571 0.226l10.747 10.802 3.641-3.687z"/></svg>
+                        <svg width="18" height="20" viewBox="0 0 20 22" fill="currentColor"><path d="M1.571 0.321C1.202 0.53 0.977 0.936 0.977 1.462v19.076c0 0.526 0.225 0.932 0.594 1.141l0.063 0.033 10.684-10.684v-0.056L1.634 0.288 1.571 0.321z"/><path d="M15.879 14.573l-3.561-3.561v-0.056l3.561-3.561 0.08 0.046 4.219 2.397c1.205 0.684 1.205 1.804 0 2.488l-4.219 2.397-0.08-0.15z"/><path d="M15.959 14.723L12.318 11.028 1.571 21.838c0.397 0.42 1.054 0.472 1.794 0.052l12.594-7.167z"/><path d="M15.959 7.341L3.365 0.174C2.625-0.246 1.968-0.194 1.571 0.226l10.747 10.802 3.641-3.687z"/></svg>
                         Google Play
                     </a>
                     <a href="https://apps.apple.com/us/app/voltage-volt-ampera-bolt-obd/id6774315064" class="cta-button explore-btn" target="_blank">
-                        <svg width="18" height="22" viewBox="0 0 18 22" fill="currentColor"><path d="M14.94 11.58c-.02-2.27 1.86-3.37 1.94-3.42-1.06-1.55-2.71-1.76-3.29-1.78-1.39-.14-2.73.83-3.44.83-.72 0-1.82-.81-2.99-.79-1.53.02-2.95.9-3.74 2.28-1.6 2.78-.41 6.89 1.14 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.98.72 1.24-.02 2.02-1.12 2.77-2.22.88-1.27 1.24-2.51 1.26-2.58-.03-.01-2.41-.93-2.43-3.68l-.03-.05zM12.63 4.15c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.68-1.1 1.77-.96 2.81 1.02.08 2.06-.52 2.69-1.28z"/></svg>
+                        <svg width="17" height="20" viewBox="0 0 18 22" fill="currentColor"><path d="M14.94 11.58c-.02-2.27 1.86-3.37 1.94-3.42-1.06-1.55-2.71-1.76-3.29-1.78-1.39-.14-2.73.83-3.44.83-.72 0-1.82-.81-2.99-.79-1.53.02-2.95.9-3.74 2.28-1.6 2.78-.41 6.89 1.14 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.98.72 1.24-.02 2.02-1.12 2.77-2.22.88-1.27 1.24-2.51 1.26-2.58-.03-.01-2.41-.93-2.43-3.68l-.03-.05zM12.63 4.15c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.68-1.1 1.77-.96 2.81 1.02.08 2.06-.52 2.69-1.28z"/></svg>
                         App Store
                     </a>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <nav class="site-nav">
-            <a href="#vehicles">Vehicles</a>
-            <a href="#screenshots">Screenshots</a>
-            <a href="#features">Features</a>
-            <a href="#pricing">Free vs Premium</a>
-            <a href="#adapters">Adapters</a>
-        </nav>
+    <nav class="site-nav">
+        <a href="#vehicles">Vehicles</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Free vs Premium</a>
+        <a href="#adapters">Adapters</a>
+    </nav>
 
-        <div class="content">
-            <section class="section" id="vehicles">
-                <h2>Supported Vehicles</h2>
-                <div class="cars-grid">
-                    <div class="car-card">Chevrolet Volt</div>
-                    <div class="car-card">Opel/Vauxhall/Holden Ampera</div>
-                    <div class="car-card">Chevrolet Bolt/Opel Ampera-E (2017–2023)</div>
-                    <div class="car-card">Chevrolet Spark EV</div>
-                    <div class="car-card">Cadillac ELR</div>
-                    <div class="car-card">Cadillac CT6 PHEV</div>
+    <div class="container">
+        <section class="section" id="vehicles">
+            <p class="eyebrow">Compatibility</p>
+            <h2>Supported Vehicles</h2>
+            <p class="section-lede">Built specifically for GM's electrified platforms &mdash; with deep, model-aware access no generic OBD2 app can match.</p>
+            <div class="cars-grid">
+                <div class="car-card">Chevrolet Volt</div>
+                <div class="car-card">Opel/Vauxhall/Holden Ampera</div>
+                <div class="car-card">Chevrolet Bolt/Opel Ampera-E (2017&ndash;2023)</div>
+                <div class="car-card">Chevrolet Spark EV</div>
+                <div class="car-card">Cadillac ELR</div>
+                <div class="car-card">Cadillac CT6 PHEV</div>
+            </div>
+            <div class="car-card coming-soon-card">Newer GM EVs (2024+) &mdash; Coming Soon</div>
+            <div class="compat-table-wrapper" style="margin-top: 28px;">
+            <table class="compat-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Before 2018</th>
+                        <th>2019 &ndash; 2023</th>
+                        <th>2024+</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data reading, monitoring, special functions</td>
+                        <td class="compat-yes">Yes</td>
+                        <td class="compat-yes">Yes</td>
+                        <td class="compat-soon">Coming soon</td>
+                    </tr>
+                    <tr>
+                        <td>Remote start / doors / window control</td>
+                        <td class="compat-yes">Yes</td>
+                        <td class="compat-no">No *</td>
+                        <td class="compat-dash">&mdash;</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="compat-note">* Serial Data Gateway Module installed on cars since 2019 firewalls remote control and other commands from the OBD2 port.</p>
+        </section>
+
+        <section class="section" id="screenshots">
+            <p class="eyebrow">Inside the app</p>
+            <h2>See it in action</h2>
+            <p class="section-lede">Every reading charted in real time, every module within reach.</p>
+            <div class="screenshots-scroll">
+                <img src="screenshots/1_play.png" width="1080" height="1920" loading="lazy" alt="Check Battery Health">
+                <img src="screenshots/2_play.png" width="1080" height="1920" loading="lazy" alt="Compare to Peers">
+                <img src="screenshots/7_play.png" width="1080" height="1920" loading="lazy" alt="Track Live Data">
+                <img src="screenshots/5_play.png" width="1080" height="1920" loading="lazy" alt="Advanced Charging Control">
+                <img src="screenshots/4_play.png" width="1080" height="1920" loading="lazy" alt="Remote Control">
+                <img src="screenshots/3_play.png" width="1080" height="1920" loading="lazy" alt="HV Unlock">
+                <img src="screenshots/8_play.png" width="1080" height="1920" loading="lazy" alt="Test Weak Battery Cells">
+                <img src="screenshots/6_play.png" width="1080" height="1920" loading="lazy" alt="Diagnostic Suite and History">
+            </div>
+        </section>
+
+        <section class="section" id="features">
+            <p class="eyebrow">Capabilities</p>
+            <h2>Everything your dealer's scanner does &mdash; and more</h2>
+            <p class="section-lede">Dealer-level access to the modules that matter, from cell-level battery data to remote control of your car.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Vehicle Control</h3>
+                    <ul class="feature-list">
+                        <li>Remote start and climate pre-conditioning (vehicles before 2019)</li>
+                        <li>Battery heater for cold-weather range</li>
+                        <li>Charge management and scheduling</li>
+                        <li>Remote door and window operation</li>
+                        <li>Engine control (ON / OFF / Release)</li>
+                        <li>Module reset and DTC clearing</li>
+                    </ul>
                 </div>
-                <div class="car-card coming-soon-card">Newer GM EVs (2024+) &mdash; Coming Soon</div>
-                <div class="compat-table-wrapper">
-                <table class="compat-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Before 2018</th>
-                            <th>2019 &ndash; 2023</th>
-                            <th>2024+</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Data reading, monitoring, special functions</td>
-                            <td class="compat-yes">Yes</td>
-                            <td class="compat-yes">Yes</td>
-                            <td class="compat-soon">Coming soon</td>
-                        </tr>
-                        <tr>
-                            <td>Remote start / doors / window control</td>
-                            <td class="compat-yes">Yes</td>
-                            <td class="compat-no">No *</td>
-                            <td>&mdash;</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="feature-card">
+                    <h3>Professional Diagnostics</h3>
+                    <ul class="feature-list">
+                        <li>Deep DTC scan across all modules</li>
+                        <li>100+ live parameters with dual-column mode</li>
+                        <li>Real-time battery pack analysis: cell voltages, temps</li>
+                        <li>Weak Cell active test with guided verdict</li>
+                        <li>Battery coolant pump and heater control</li>
+                        <li>HW Info with module programming dates</li>
+                    </ul>
                 </div>
-                <p class="compat-note">* Serial Data Gateway Module installed on cars since 2019 firewalls remote control and other commands from the OBD2 port.</p>
-            </section>
-
-            <section class="section" id="screenshots">
-                <h2>App Screenshots</h2>
-                <div class="screenshots-scroll">
-                    <img src="screenshots/1_play.png" alt="Check Battery Health">
-                    <img src="screenshots/2_play.png" alt="Compare to Peers">
-                    <img src="screenshots/7_play.png" alt="Track Live Data">
-                    <img src="screenshots/5_play.png" alt="Advanced Charging Control">
-                    <img src="screenshots/4_play.png" alt="Remote Control">
-                    <img src="screenshots/3_play.png" alt="HV Unlock">
-                    <img src="screenshots/8_play.png" alt="Test Weak Battery Cells">
-                    <img src="screenshots/6_play.png" alt="Diagnostic Suite and History">
+                <div class="feature-card">
+                    <h3>Live Monitoring</h3>
+                    <p>Nine dedicated screens, every value charted in real time:</p>
+                    <ul class="feature-list">
+                        <li>Efficiency &mdash; SoC, EV range, kWh, fuel efficiency</li>
+                        <li>Powertrain &mdash; HV power, motor temps, transmission</li>
+                        <li>HV Battery &mdash; pack voltage, cell delta, temps, coolant</li>
+                        <li>Charger &mdash; AC/DC voltage, current, power, duty cycles</li>
+                        <li>Climate &mdash; HVAC, cabin heat, AC, blower, remote start</li>
+                        <li>12V &mdash; voltage, current, power, per-module supply</li>
+                        <li>TPMS &mdash; live tire pressure for all four wheels</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section class="section" id="features">
-                <h2>Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Vehicle Control</h3>
-                        <ul class="feature-list">
-                            <li>Remote start and climate pre-conditioning (vehicles before 2019)</li>
-                            <li>Battery heater for cold-weather range</li>
-                            <li>Charge management and scheduling</li>
-                            <li>Remote door and window operation</li>
-                            <li>Engine control (ON / OFF / Release)</li>
-                            <li>Module reset and DTC clearing</li>
-                        </ul>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Professional Diagnostics</h3>
-                        <ul class="feature-list">
-                            <li>Deep DTC scan across all modules</li>
-                            <li>100+ live parameters with dual-column mode</li>
-                            <li>Real-time battery pack analysis: cell voltages, temps</li>
-                            <li>Weak Cell active test with guided verdict</li>
-                            <li>Battery coolant pump and heater control</li>
-                            <li>HW Info with module programming dates</li>
-                        </ul>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Live Monitoring</h3>
-                        <p>Nine dedicated screens, every value charted in real time:</p>
-                        <ul class="feature-list">
-                            <li>Efficiency &mdash; SoC, EV range, kWh, fuel efficiency</li>
-                            <li>Powertrain &mdash; HV power, motor temps, transmission</li>
-                            <li>HV Battery &mdash; pack voltage, cell delta, temps, coolant</li>
-                            <li>Charger &mdash; AC/DC voltage, current, power, duty cycles</li>
-                            <li>Climate &mdash; HVAC, cabin heat, AC, blower, remote start</li>
-                            <li>12V &mdash; voltage, current, power, per-module supply</li>
-                            <li>TPMS &mdash; live tire pressure for all four wheels</li>
-                        </ul>
-                    </div>
-                    <div class="feature-card">
-                        <h3>HV Unlock</h3>
-                        <p>"Unbrick" your car and stay on the road — avoid a tow truck by resetting the high voltage system right from your phone. Clears Service High Voltage Charging System faults and re-enables driving and charging.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Health Insights</h3>
-                        <p>Critical vehicle health analysis and maintenance recommendations &mdash; ideal for DIY enthusiasts, used car buyers checking battery health, and owners tracking long-term performance.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>History & Export</h3>
-                        <ul class="feature-list">
-                            <li>Full history view with vehicle selection</li>
-                            <li>Export, import, and edit vehicle history</li>
-                        </ul>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Polished Experience</h3>
-                        <ul class="feature-list">
-                            <li>Dark / Light / System theme</li>
-                            <li>Multi-language support</li>
-                            <li>Bottom status bar for at-a-glance info</li>
-                        </ul>
-                    </div>
+                <div class="feature-card">
+                    <h3>HV Unlock</h3>
+                    <p>"Unbrick" your car and stay on the road &mdash; avoid a tow truck by resetting the high voltage system right from your phone. Clears Service High Voltage Charging System faults and re-enables driving and charging.</p>
                 </div>
+                <div class="feature-card">
+                    <h3>Health Insights</h3>
+                    <p>Critical vehicle health analysis and maintenance recommendations &mdash; ideal for DIY enthusiasts, used car buyers checking battery health, and owners tracking long-term performance.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>History &amp; Export</h3>
+                    <ul class="feature-list">
+                        <li>Full history view with vehicle selection</li>
+                        <li>Export, import, and edit vehicle history</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Polished Experience</h3>
+                    <ul class="feature-list">
+                        <li>Dark / Light / System theme</li>
+                        <li>Multi-language support</li>
+                        <li>Bottom status bar for at-a-glance info</li>
+                    </ul>
+                </div>
+            </div>
 
-                <h3 id="pricing" style="scroll-margin-top: 80px;">Free vs Premium</h3>
+            <div class="pricing-block" id="pricing">
+                <p class="eyebrow">Pricing</p>
+                <h2>Free vs Premium</h2>
+                <p class="section-lede">Core scanning is free forever. Premium unlocks full control and deep analysis.</p>
                 <div class="compat-table-wrapper">
                 <table class="compat-table pricing-table">
                     <thead>
@@ -775,51 +851,54 @@
                     </tbody>
                 </table>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="section" id="adapters">
-                <h2>Supported Adapters</h2>
-                <div class="adapter-comparison">
-                    <div class="adapter-card enhanced-adapter">
-                        <h3>Enhanced Features</h3>
-                        <h4>SW-CAN Compatible Adapters</h4>
-                        <ul class="feature-list">
-                            <li>Automatic vehicle wake-up (for monitoring or control)</li>
-                            <li>Remote door lock/unlock and Remote Start</li>
-                            <li>Access to Instrument panel cluster</li>
-                            <li>Access to Radio module</li>
-                            <li>Access to HVAC system module</li>
-                            <li>Access to Frontview Camera module</li>
-                        </ul>
-                        <h4>Recommended SW-CAN adapters</h4>
-                        <ul class="buy-list">
-                            <li>vGate vLinker MS [ iOS + Android ] <a href="https://www.google.com/search?q=vGate+vLinker+MS" target="_blank">BUY</a></li>
-                            <li>vGate vLinker MC+ [ iOS (BLE) + Android ] <a href="https://www.google.com/search?q=vGate+vLinker+MC%2B" target="_blank">BUY</a></li>
-                            <li>OBDLink MX+ [ iOS + Android ] <a href="https://www.google.com/search?q=OBDLink+MX%2B" target="_blank">BUY</a></li>
-                        
-                        </ul>
-                        <p><small><em>Required for full app compatibility</em></small></p>
-                    </div>
-
-                    <div class="adapter-card basic-adapter">
-                        <h3>Basic Functionality</h3>
-                        <h4>ELM327-based Bluetooth OBD2 Adapters</h4>
-                        <ul class="feature-list">
-                            <li>Access only to High Speed CAN (Engine, Hybrid Powertrain and Battery Energy Control Modules)</li>
-                        </ul>
-                        <h4>Recommended basic adapter</h4>
-                        <ul class="buy-list">
-                            <li>vGate iCar Pro BT3.0 <a href="https://www.google.com/search?q=vGate+iCar+Pro+BT3.0" target="_blank">BUY</a></li>
-                            <li>ELM327 v1.5 <a href="https://www.google.com/search?q=ELM327+v1.5" target="_blank">BUY</a></li>
-                        </ul>
-                    </div>
+        <section class="section" id="adapters">
+            <p class="eyebrow">Hardware</p>
+            <h2>Supported Adapters</h2>
+            <p class="section-lede">Any ELM327 adapter gets you diagnostics. An SW-CAN adapter unlocks the rest of the car.</p>
+            <div class="adapter-comparison">
+                <div class="adapter-card enhanced-adapter">
+                    <span class="adapter-badge">Full compatibility</span>
+                    <h3>SW-CAN Compatible Adapters</h3>
+                    <ul class="feature-list">
+                        <li>Automatic vehicle wake-up (for monitoring or control)</li>
+                        <li>Remote door lock/unlock and Remote Start</li>
+                        <li>Access to Instrument panel cluster</li>
+                        <li>Access to Radio module</li>
+                        <li>Access to HVAC system module</li>
+                        <li>Access to Frontview Camera module</li>
+                    </ul>
+                    <h4>Recommended</h4>
+                    <ul class="buy-list">
+                        <li><span>vGate vLinker MS <span class="platform">iOS + Android</span></span> <a href="https://www.google.com/search?q=vGate+vLinker+MS" target="_blank">BUY</a></li>
+                        <li><span>vGate vLinker MC+ <span class="platform">iOS (BLE) + Android</span></span> <a href="https://www.google.com/search?q=vGate+vLinker+MC%2B" target="_blank">BUY</a></li>
+                        <li><span>OBDLink MX+ <span class="platform">iOS + Android</span></span> <a href="https://www.google.com/search?q=OBDLink+MX%2B" target="_blank">BUY</a></li>
+                    </ul>
+                    <p class="adapter-note">Required for full app compatibility.</p>
                 </div>
-            </section>
-        </div>
 
-        <footer class="footer">
-            <p>&copy; 2025 Voltage App &middot; <a href="privacy.html" style="color: rgba(228, 230, 234, 0.6); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#64b5f6'" onmouseout="this.style.color='rgba(228, 230, 234, 0.6)'">Privacy Policy</a></p>
-        </footer>
+                <div class="adapter-card basic-adapter">
+                    <span class="adapter-badge">Basic</span>
+                    <h3>ELM327-based OBD2 Adapters</h3>
+                    <ul class="feature-list">
+                        <li>Access only to High Speed CAN (Engine, Hybrid Powertrain and Battery Energy Control Modules)</li>
+                    </ul>
+                    <h4>Recommended</h4>
+                    <ul class="buy-list">
+                        <li><span>vGate iCar Pro BT3.0</span> <a href="https://www.google.com/search?q=vGate+iCar+Pro+BT3.0" target="_blank">BUY</a></li>
+                        <li><span>ELM327 v1.5</span> <a href="https://www.google.com/search?q=ELM327+v1.5" target="_blank">BUY</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Voltage App &middot; <a href="privacy.html">Privacy Policy</a></p>
+        </div>
+    </footer>
 </body>
 </html>

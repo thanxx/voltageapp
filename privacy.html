@@ -6,169 +6,111 @@
     <title>Privacy Policy - Voltage App</title>
     <meta name="description" content="Privacy Policy for the Voltage App - Advanced EV Monitoring & Control">
 
+    <link rel="icon" type="image/png" href="app-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #000;
+            --surface: #0c0c0c;
+            --line: #1e1e1e;
+            --line-soft: #171717;
+            --text: #e7e7e7;
+            --muted: #878787;
+            --accent: #2d9bda;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #e4e6ea;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
-        header {
-            background: rgba(22, 33, 62, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin: 20px 0;
-            padding: 40px 0;
-            text-align: center;
-            border: 1px solid rgba(100, 149, 237, 0.3);
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
+        header { padding: 80px 0 40px; border-bottom: 1px solid var(--line-soft); }
 
         .hero-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #64b5f6;
-            margin: 0;
-            text-shadow: 0 4px 20px rgba(100, 181, 246, 0.4);
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            color: #fff;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: rgba(228, 230, 234, 0.7);
-            margin: 0;
-            font-weight: 300;
-        }
+        .hero-subtitle { font-size: 1.05rem; color: var(--muted); margin-top: 8px; }
 
         .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #64b5f6;
+            display: inline-block;
+            color: var(--accent);
             text-decoration: none;
-            font-size: 0.95rem;
-            margin-top: 10px;
-            transition: color 0.2s;
+            font-size: 0.92rem;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: opacity 0.2s ease;
         }
 
-        .back-link:hover {
-            color: #90caf9;
-        }
+        .back-link:hover { opacity: 0.75; }
 
-        .content {
-            background: rgba(30, 30, 46, 0.9);
-            border-radius: 20px;
-            margin: 20px 0;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            border: 1px solid rgba(100, 149, 237, 0.15);
-            padding: 40px;
-        }
+        .content { padding: 48px 0 64px; }
 
         .last-updated {
-            color: rgba(228, 230, 234, 0.5);
-            font-size: 0.9rem;
-            margin-bottom: 30px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--line-soft);
         }
 
         h2 {
-            font-size: 1.6rem;
-            color: #90caf9;
-            margin: 35px 0 15px 0;
-            padding-bottom: 8px;
-            position: relative;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            color: #fff;
+            margin: 40px 0 12px;
         }
 
-        h2:first-of-type {
-            margin-top: 0;
-        }
+        h2:first-of-type { margin-top: 0; }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(45deg, #42a5f5, #1e88e5);
-            border-radius: 2px;
-        }
+        p { margin-bottom: 14px; color: var(--muted); }
 
-        p {
-            margin-bottom: 12px;
-            color: rgba(228, 230, 234, 0.85);
-        }
+        p strong { color: var(--text); font-weight: 600; }
 
-        ul {
-            margin: 10px 0 15px 20px;
-            color: rgba(228, 230, 234, 0.85);
-        }
+        ul { margin: 12px 0 18px 22px; color: var(--muted); }
 
-        ul li {
-            padding: 4px 0;
-        }
+        ul li { padding: 4px 0; }
 
-        a {
-            color: #64b5f6;
-        }
+        a { color: var(--accent); }
 
         .footer {
             text-align: center;
-            padding: 40px;
-            color: rgba(228, 230, 234, 0.6);
+            padding: 40px 0 60px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--line-soft);
         }
 
-        .footer a {
-            color: rgba(228, 230, 234, 0.6);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
+        .footer a { color: var(--muted); text-decoration: none; transition: color 0.2s ease; }
+        .footer a:hover { color: var(--text); }
 
-        .footer a:hover {
-            color: #64b5f6;
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .content {
-                padding: 25px;
-            }
+        @media (max-width: 640px) {
+            header { padding: 56px 0 32px; }
+            .hero-title { font-size: 2.2rem; }
+            h2 { font-size: 1.25rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="hero-content">
-                <h1 class="hero-title">Privacy Policy</h1>
-                <p class="hero-subtitle">Voltage App</p>
-                <a href="index.html" class="back-link">&larr; Back to Voltage App</a>
-            </div>
+            <h1 class="hero-title">Privacy Policy</h1>
+            <p class="hero-subtitle">Voltage App</p>
+            <a href="index.html" class="back-link">&larr; Back to Voltage App</a>
         </header>
 
         <div class="content">
