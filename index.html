@@ -52,45 +52,54 @@
         /* ---------- Hero ---------- */
 
         header {
-            padding: 100px 0 80px;
+            padding: 0 0 72px;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
-        header::before {
+        .hero-art {
+            position: relative;
+            max-width: 1120px;
+            margin: 0 auto;
+            line-height: 0;
+        }
+
+        .hero-art img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Melt the artwork's edges into the black page */
+        .hero-art::after {
             content: '';
             position: absolute;
-            top: -140px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 700px;
-            height: 420px;
-            background: radial-gradient(ellipse at center, rgba(45, 155, 218, 0.16) 0%, transparent 68%);
+            inset: 0;
             pointer-events: none;
+            background:
+                linear-gradient(to bottom, transparent 58%, rgba(0, 0, 0, 0.55) 84%, #000 100%),
+                linear-gradient(to right, #000 0%, transparent 9%, transparent 91%, #000 100%);
         }
 
         .hero-content {
             position: relative;
+            margin-top: -28px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 24px;
         }
 
-        .app-icon {
-            width: 76px;
-            height: 76px;
-            border-radius: 18px;
-            border: 1px solid var(--line);
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
-            letter-spacing: -0.045em;
-            line-height: 1.05;
-            color: #fff;
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         .hero-subtitle {
@@ -566,11 +575,11 @@
 
         @media (max-width: 640px) {
             header {
-                padding: 64px 0 56px;
+                padding: 0 0 52px;
             }
 
-            .hero-title {
-                font-size: 2.7rem;
+            .hero-content {
+                margin-top: -10px;
             }
 
             .hero-subtitle {
@@ -598,10 +607,13 @@
 </head>
 <body>
     <header>
+        <div class="hero-art">
+            <img src="hero.jpg" width="1488" height="720" fetchpriority="high"
+                 alt="Voltage — diagnostics for GM EVs &amp; PHEVs, with Chevrolet Volt and Bolt under a lightning storm">
+        </div>
         <div class="container">
             <div class="hero-content">
-                <img class="app-icon" src="app-icon.png" alt="Voltage App Icon">
-                <h1 class="hero-title">Voltage</h1>
+                <h1 class="visually-hidden">Voltage &mdash; Diagnostics for GM EVs &amp; PHEVs</h1>
                 <p class="hero-subtitle">Professional-grade diagnostics, live monitoring and remote control for your GM electric vehicle.</p>
                 <div class="hero-buttons">
                     <a href="https://play.google.com/store/apps/details?id=io.tripovan.voltage" class="cta-button download-btn" target="_blank">
