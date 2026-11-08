@@ -523,6 +523,77 @@
             font-size: 0.9rem;
         }
 
+        /* Platform tabs: CSS-only via radios, so they work before/without JS */
+        .platform-tabs > input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .tab-bar {
+            display: inline-flex;
+            gap: 4px;
+            padding: 4px;
+            margin-bottom: 18px;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            background: #000;
+        }
+
+        .tab-bar label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-bar label:hover {
+            color: var(--text);
+        }
+
+        .tab-bar svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        #tab-android:checked ~ .tab-bar label[for="tab-android"],
+        #tab-ios:checked ~ .tab-bar label[for="tab-ios"] {
+            background: var(--surface-2);
+            color: #fff;
+        }
+
+        #tab-android:focus-visible ~ .tab-bar label[for="tab-android"],
+        #tab-ios:focus-visible ~ .tab-bar label[for="tab-ios"] {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        #tab-android:checked ~ .tab-panel[data-platform="android"],
+        #tab-ios:checked ~ .tab-panel[data-platform="ios"] {
+            display: block;
+        }
+
+        .device-name {
+            display: inline-block;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.86em;
+            color: var(--text);
+            background: #000;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 2px 8px;
+        }
+
         .troubleshoot {
             margin-top: 16px;
             background: var(--surface);
@@ -775,7 +846,7 @@
                 <div class="car-card">Cadillac ELR</div>
                 <div class="car-card">Cadillac CT6 PHEV</div>
             </div>
-            <div class="car-card coming-soon-card">Newer GM EVs (2024+) &mdash; Coming Soon</div>
+            <div class="car-card coming-soon-card">Newer GM EVs (2024+, Ultium) &mdash; Early Support</div>
             <div class="compat-table-wrapper" style="margin-top: 28px;">
             <table class="compat-table">
                 <thead>
@@ -791,7 +862,7 @@
                         <td>Data reading, monitoring, special functions</td>
                         <td class="compat-yes">Yes</td>
                         <td class="compat-yes">Yes</td>
-                        <td class="compat-soon">Coming soon</td>
+                        <td class="compat-soon">Early support</td>
                     </tr>
                     <tr>
                         <td>Remote start / doors / window control</td>
@@ -831,10 +902,11 @@
                     <ul class="feature-list">
                         <li>Remote start and climate pre-conditioning (vehicles before 2019)</li>
                         <li>Battery heater for cold-weather range</li>
-                        <li>Charge management and scheduling</li>
+                        <li>Charging schedule &mdash; view and edit departure times</li>
+                        <li>Automatic charge stop at a chosen EV range</li>
                         <li>Remote door and window operation</li>
-                        <li>Engine control (ON / OFF / Release)</li>
-                        <li>Module reset and DTC clearing</li>
+                        <li>Engine control: ON / OFF / Release, RPM, and auto-start below a set SoC</li>
+                        <li>Module restart and DTC clearing</li>
                     </ul>
                 </div>
                 <div class="feature-card">
@@ -855,10 +927,10 @@
                         <li>Efficiency &mdash; SoC, EV range, kWh, fuel efficiency</li>
                         <li>Powertrain &mdash; HV power, motor temps, transmission</li>
                         <li>HV Battery &mdash; pack voltage, cell delta, temps, coolant</li>
-                        <li>Charger &mdash; AC/DC voltage, current, power, duty cycles</li>
-                        <li>Climate &mdash; HVAC, cabin heat, AC, blower, remote start</li>
-                        <li>12V &mdash; voltage, current, power, per-module supply</li>
-                        <li>TPMS &mdash; live tire pressure for all four wheels</li>
+                        <li>Charger &mdash; AC/DC voltage, current, power, duty cycles, port door and cable status</li>
+                        <li>Climate &mdash; HVAC, cabin heat, AC, blower, A/C line pressures</li>
+                        <li>12V &mdash; voltage, current, power, per-module supply, DC-DC setpoint</li>
+                        <li>TPMS &mdash; live tire pressure for all four wheels, in psi, bar or kPa</li>
                     </ul>
                 </div>
                 <div class="feature-card">
@@ -868,6 +940,29 @@
                 <div class="feature-card">
                     <h3>Health Insights</h3>
                     <p>Critical vehicle health analysis and maintenance recommendations &mdash; ideal for DIY enthusiasts, used car buyers checking battery health, and owners tracking long-term performance.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Compare to Peers</h3>
+                    <p>See where your car really stands against others of the same model and year:</p>
+                    <ul class="feature-list">
+                        <li>Capacity vs Mileage &mdash; your battery against cars at the same odometer</li>
+                        <li>Resistance Index &mdash; internal resistance rated normal, elevated or high (Volt / Ampera)</li>
+                        <li>Battery capacity and estimated degradation</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Special Functions</h3>
+                    <ul class="feature-list">
+                        <li>Battery capacity relearn</li>
+                        <li>Oil life and fuel life reset (Volt / Ampera)</li>
+                        <li>HVAC afterblow &mdash; keeps the A/C dry and free of odors</li>
+                        <li>Tire rotation &mdash; reassign TPMS sensors with no programming tool</li>
+                        <li>Module restart on HS-CAN or SW-CAN</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>ELR Dashboard Skin</h3>
+                    <p>Switch your instrument cluster between the Volt and Cadillac ELR dashboard designs, on 2016&ndash;2018 Volt and ELR. A one-time unlock sold separately from Premium, discounted for Premium owners; needs a vLinker MC+ or OBDLink MX+.</p>
                 </div>
                 <div class="feature-card">
                     <h3>History &amp; Export</h3>
@@ -976,7 +1071,27 @@
                             <td class="compat-yes">&#10003;</td>
                         </tr>
                         <tr>
-                            <td>Special functions: battery capacity relearn, coolant pump/heater control, infotainment (radio) reset, HVAC afterblow activation (soon), oil life &amp; fuel life reset (soon)</td>
+                            <td>Special functions: battery capacity relearn, coolant pump/heater control, infotainment (radio) reset, HVAC afterblow, oil life &amp; fuel life reset, tire rotation, module restart</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Charging schedule &mdash; view and edit departure times across the week</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Automatic modes &mdash; stop charging at a chosen EV range, start the engine below a chosen SoC</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Engine speed (RPM) control</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-yes">&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Capacity vs Mileage chart &mdash; your battery against other cars at the same mileage</td>
                             <td class="compat-dash">&mdash;</td>
                             <td class="compat-yes">&#10003;</td>
                         </tr>
@@ -985,9 +1100,15 @@
                             <td class="compat-dash">&mdash;</td>
                             <td class="compat-yes">&#10003;</td>
                         </tr>
+                        <tr>
+                            <td>ELR dashboard skin &mdash; switch the cluster between the Volt and ELR designs</td>
+                            <td class="compat-dash">&mdash;</td>
+                            <td class="compat-soon">Separate purchase *</td>
+                        </tr>
                     </tbody>
                 </table>
                 </div>
+                <p class="compat-note">* The ELR dashboard skin is a one-time unlock sold separately from Premium, at a discount for Premium owners. For 2016&ndash;2018 Volt and Cadillac ELR, and it needs a vLinker MC+ or OBDLink MX+.</p>
             </div>
         </section>
 
@@ -1006,17 +1127,42 @@
                     <p>The port sits under the dashboard on the driver's side, usually just above the pedals. Push the adapter in firmly until its indicator lights come on.</p>
                 </li>
                 <li>
-                    <h3>Pair the adapter with your phone</h3>
-                    <p>Open your phone's Bluetooth settings and pair the adapter there before opening Voltage. If it asks for a PIN, it is usually <strong>1234</strong> or <strong>0000</strong>.</p>
-                    <p class="step-note">BLE adapters are the exception &mdash; they never show up in Bluetooth settings. Skip the pairing step and select them directly in the app.</p>
-                </li>
-                <li>
                     <h3>Start the car</h3>
                     <p>Turn the car fully on, so it reads <strong>Ready</strong> &mdash; not just accessory mode. With the car off, most control modules are asleep and can't answer the app.</p>
                 </li>
                 <li>
-                    <h3>Select your adapter and connect</h3>
-                    <p>Open Voltage, pick your adapter from the list, and press <strong>Connect</strong>. Once it's connected, the app reads your VIN and you're ready to scan.</p>
+                    <h3>Connect your phone</h3>
+                    <p>The vLinker MC+ works on both platforms, but each one reaches it a different way.</p>
+
+                    <div class="platform-tabs">
+                        <input type="radio" name="platform" id="tab-android" checked>
+                        <input type="radio" name="platform" id="tab-ios">
+
+                        <div class="tab-bar" role="tablist">
+                            <label for="tab-android">
+                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 9.48l1.84-3.18a.38.38 0 0 0-.66-.38l-1.86 3.22a11.4 11.4 0 0 0-9.76 0L5.3 5.92a.38.38 0 1 0-.66.38L6.48 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52M7 15.25a1.1 1.1 0 1 1 1.1-1.1 1.1 1.1 0 0 1-1.1 1.1m10 0a1.1 1.1 0 1 1 1.1-1.1 1.1 1.1 0 0 1-1.1 1.1"/></svg>
+                                Android
+                            </label>
+                            <label for="tab-ios">
+                                <svg viewBox="0 0 18 22" fill="currentColor" aria-hidden="true"><path d="M14.94 11.58c-.02-2.27 1.86-3.37 1.94-3.42-1.06-1.55-2.71-1.76-3.29-1.78-1.39-.14-2.73.83-3.44.83-.72 0-1.82-.81-2.99-.79-1.53.02-2.95.9-3.74 2.28-1.6 2.78-.41 6.89 1.14 9.14.76 1.1 1.67 2.34 2.86 2.29 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.78.74 2.98.72 1.24-.02 2.02-1.12 2.77-2.22.88-1.27 1.24-2.51 1.26-2.58-.03-.01-2.41-.93-2.43-3.68l-.03-.05zM12.63 4.15c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.68-1.1 1.77-.96 2.81 1.02.08 2.06-.52 2.69-1.28z"/></svg>
+                                iPhone
+                            </label>
+                        </div>
+
+                        <div class="tab-panel" data-platform="android">
+                            <p><strong>1. Pair it in Android's Bluetooth settings first.</strong> Open Settings &rarr; Bluetooth, and pair the adapter before opening Voltage. If it asks for a PIN, it is usually <strong>1234</strong> or <strong>0000</strong>.</p>
+                            <p><strong>2. Pick the Android device.</strong> The vLinker MC+ advertises two separate devices &mdash; choose <span class="device-name">vLinker MC-Android</span>, not the iOS one.</p>
+                            <p><strong>3. Open Voltage</strong>, select that adapter from the list, and press <strong>Connect</strong>.</p>
+                        </div>
+
+                        <div class="tab-panel" data-platform="ios">
+                            <p><strong>1. Don't pair anything in iOS Settings.</strong> On iPhone the adapter is used over Bluetooth LE, and BLE devices never appear in the system Bluetooth list. If you go looking for it there, you won't find it &mdash; that's normal.</p>
+                            <p><strong>2. Open Voltage and switch to the BLE tab</strong> in the adapter list.</p>
+                            <p><strong>3. Pick the iOS device.</strong> The vLinker MC+ advertises two separate devices &mdash; choose <span class="device-name">vLinker MC-iOS</span> &mdash; then press <strong>Connect</strong>.</p>
+                        </div>
+                    </div>
+
+                    <p class="step-note">Once connected, the app reads your VIN and you're ready to scan.</p>
                 </li>
             </ol>
 
@@ -1024,8 +1170,9 @@
                 <h3>Not connecting?</h3>
                 <ul class="feature-list">
                     <li><strong>Close any other OBD2 apps.</strong> Only one app can hold the adapter at a time, and a forgotten app in the background will keep the connection to itself.</li>
-                    <li><strong>Check you picked the right Bluetooth device.</strong> Adapters often appear under generic names like OBDII, VLINK or OBDLink rather than a brand name.</li>
-                    <li><strong>Make sure the car is on,</strong> not in accessory mode &mdash; and that the adapter's lights are lit, which means it has power.</li>
+                    <li><strong>Check you picked the right device.</strong> On Android make sure it's the <span class="device-name">-Android</span> entry, on iPhone the <span class="device-name">-iOS</span> one on the BLE tab. Other adapters often appear under generic names like OBDII or OBDLink rather than a brand name.</li>
+                    <li><strong>Turn Bluetooth off and back on.</strong> This clears a stale connection that can leave the adapter busy, and fixes most cases on its own.</li>
+                    <li><strong>Make sure the car is on,</strong> not in accessory mode &mdash; that you're within Bluetooth range, and that the adapter's lights are lit.</li>
                     <li><strong>Unpair it from any other phone.</strong> Most adapters only accept one paired device, so an old phone in range can quietly take the connection.</li>
                     <li><strong>Still stuck?</strong> Unplug the adapter from the OBD2 port, plug it back in, then fully close and reopen the app.</li>
                 </ul>
@@ -1063,6 +1210,7 @@
                     <h3>ELM327-based OBD2 Adapters</h3>
                     <ul class="feature-list">
                         <li>Access only to High Speed CAN (Engine, Hybrid Powertrain and Battery Energy Control Modules)</li>
+                        <li>BLE and Wi-Fi adapters can open doors and windows, after a one-time ownership verification</li>
                     </ul>
                     <h4>Recommended</h4>
                     <ul class="buy-list">
@@ -1079,5 +1227,20 @@
             <p>&copy; 2025 Voltage App &middot; <a href="privacy.html">Privacy Policy</a></p>
         </div>
     </footer>
+
+    <script>
+        // Preselect the platform tab. Android stays checked in the markup, so the
+        // tabs still work if this never runs.
+        (function () {
+            var ua = navigator.userAgent;
+            var isApple = /iPad|iPhone|iPod/.test(ua) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) ||
+                /Macintosh/.test(ua);
+            if (isApple) {
+                var ios = document.getElementById('tab-ios');
+                if (ios) { ios.checked = true; }
+            }
+        })();
+    </script>
 </body>
 </html>
