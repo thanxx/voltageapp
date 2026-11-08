@@ -158,14 +158,23 @@
             top: 0;
             z-index: 20;
             display: flex;
-            justify-content: center;
+            justify-content: safe center;
             gap: 4px;
-            flex-wrap: wrap;
+            /* One row at every width: a wrapped sticky nav grows tall enough
+               to cover the section headings its own links scroll to. */
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             background: rgba(0, 0, 0, 0.72);
             backdrop-filter: blur(14px);
             border-top: 1px solid var(--line-soft);
             border-bottom: 1px solid var(--line-soft);
             padding: 12px 16px;
+        }
+
+        .site-nav::-webkit-scrollbar {
+            display: none;
         }
 
         .site-nav a {
@@ -436,7 +445,110 @@
 
         .pricing-block {
             margin-top: 56px;
-            scroll-margin-top: 70px;
+            scroll-margin-top: 110px;
+        }
+
+        /* ---------- Getting started ---------- */
+
+        .steps {
+            list-style: none;
+            counter-reset: step;
+            display: grid;
+            gap: 14px;
+        }
+
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px 26px 22px 70px;
+            transition: border-color 0.2s ease;
+        }
+
+        .steps li:hover {
+            border-color: #333;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 22px;
+            top: 21px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(45, 155, 218, 0.12);
+            border: 1px solid rgba(45, 155, 218, 0.35);
+            color: var(--accent);
+            font-size: 0.86rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .steps h3 {
+            margin-bottom: 6px;
+        }
+
+        .steps p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .steps p:last-child {
+            margin-bottom: 0;
+        }
+
+        .steps strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .steps a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .steps a:hover {
+            text-decoration: underline;
+        }
+
+        .step-note {
+            margin-top: 10px;
+            padding-left: 14px;
+            border-left: 2px solid rgba(45, 155, 218, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .troubleshoot {
+            margin-top: 16px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 28px;
+        }
+
+        .troubleshoot .feature-list li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .help-contact {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-top: 20px;
+        }
+
+        .help-contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .help-contact a:hover {
+            text-decoration: underline;
         }
 
         /* ---------- Adapters ---------- */
@@ -598,8 +710,20 @@
                 height: 400px;
             }
 
+            .steps li {
+                padding: 20px 20px 20px 60px;
+            }
+
+            .steps li::before {
+                left: 18px;
+                top: 19px;
+                width: 27px;
+                height: 27px;
+            }
+
             .feature-card,
-            .adapter-card {
+            .adapter-card,
+            .troubleshoot {
                 padding: 22px;
             }
         }
@@ -634,6 +758,7 @@
         <a href="#screenshots">Screenshots</a>
         <a href="#features">Features</a>
         <a href="#pricing">Free vs Premium</a>
+        <a href="#help">How to Start</a>
         <a href="#adapters">Adapters</a>
     </nav>
 
@@ -863,6 +988,49 @@
                     </tbody>
                 </table>
                 </div>
+            </div>
+        </section>
+
+        <section class="section" id="help">
+            <p class="eyebrow">Getting started</p>
+            <h2>How to start</h2>
+            <p class="section-lede">Everything between a new adapter and live data from your car.</p>
+
+            <ol class="steps">
+                <li>
+                    <h3>Get a compatible adapter</h3>
+                    <p>Voltage reaches your car through a Bluetooth OBD2 adapter &mdash; your phone can't talk to the car without one. If you don't have one yet, get the <strong>vGate vLinker MC+</strong>: it's the adapter we recommend, and it unlocks every feature including remote control. <a href="#adapters">Compare all supported adapters</a></p>
+                </li>
+                <li>
+                    <h3>Plug it into the OBD2 port</h3>
+                    <p>The port sits under the dashboard on the driver's side, usually just above the pedals. Push the adapter in firmly until its indicator lights come on.</p>
+                </li>
+                <li>
+                    <h3>Pair the adapter with your phone</h3>
+                    <p>Open your phone's Bluetooth settings and pair the adapter there before opening Voltage. If it asks for a PIN, it is usually <strong>1234</strong> or <strong>0000</strong>.</p>
+                    <p class="step-note">BLE adapters are the exception &mdash; they never show up in Bluetooth settings. Skip the pairing step and select them directly in the app.</p>
+                </li>
+                <li>
+                    <h3>Start the car</h3>
+                    <p>Turn the car fully on, so it reads <strong>Ready</strong> &mdash; not just accessory mode. With the car off, most control modules are asleep and can't answer the app.</p>
+                </li>
+                <li>
+                    <h3>Select your adapter and connect</h3>
+                    <p>Open Voltage, pick your adapter from the list, and press <strong>Connect</strong>. Once it's connected, the app reads your VIN and you're ready to scan.</p>
+                </li>
+            </ol>
+
+            <div class="troubleshoot">
+                <h3>Not connecting?</h3>
+                <ul class="feature-list">
+                    <li><strong>Close any other OBD2 apps.</strong> Only one app can hold the adapter at a time, and a forgotten app in the background will keep the connection to itself.</li>
+                    <li><strong>Check you picked the right Bluetooth device.</strong> Adapters often appear under generic names like OBDII, VLINK or OBDLink rather than a brand name.</li>
+                    <li><strong>Make sure the car is on,</strong> not in accessory mode &mdash; and that the adapter's lights are lit, which means it has power.</li>
+                    <li><strong>Unpair it from any other phone.</strong> Most adapters only accept one paired device, so an old phone in range can quietly take the connection.</li>
+                    <li><strong>Still stuck?</strong> Unplug the adapter from the OBD2 port, plug it back in, then fully close and reopen the app.</li>
+                </ul>
+                <p class="help-contact">Beware of cheap clones advertising themselves as "ELM327 v2.1" &mdash; they're known to answer with scrambled data and can be read as the wrong car. Sticking to a <a href="#adapters">recommended adapter</a> avoids this entirely.</p>
+                <p class="help-contact">Still can't get connected? Email us at <a href="mailto:voltagedev@proton.me">voltagedev@proton.me</a> and we'll help.</p>
             </div>
         </section>
 
